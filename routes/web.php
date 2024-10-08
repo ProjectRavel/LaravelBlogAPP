@@ -23,14 +23,13 @@ Route::get('/', action: function () {
 
 Route::get('/about', action: function () {
     return view('about', ['title' => 'About']);
-}); 
-
-Route::get('/blog', action: function () {
-    return view('blog', ['title' => 'Blog', 'posts' => Post::all()]);
 });
 
+Route::get('/blog', function () {
+    return view('blog', ['title' => 'Blog', 'posts' => Post::all()]); // Mengambil semua post
+});
 Route::get('/blog/{id}', function (Post $post) {
-    return view('post', ['title' => $post['title'], 'writter' => $post['writter'], 'date' => $post['date'], 'content' => $post['content']]);
+    return view('post', ['post' => $post]); // Ubah menjadi 'post' => $post
 });
 
 Route::get('/contact', action: function () {
